@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ASIN Tools | Seller Hub</title>
+  <!-- Google Fonts & Simple Icons (Font Awesome 6 Free via CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Using modern CSS with glass morphism and smooth animations -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: linear-gradient(145deg, #0A2B3F 0%, #1A4A6F 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+
+    /* animated mesh gradient overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(255, 215, 120, 0.08) 0%, rgba(0, 0, 0, 0) 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* main card container */
+    .card {
+      max-width: 580px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(2px);
+      border-radius: 48px;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      transition: transform 0.25s ease;
+      z-index: 2;
+    }
+
+    .card:hover {
+      transform: scale(1.01);
+    }
+
+    /* header section with avatar and branding */
+    .profile {
+      background: linear-gradient(115deg, #F8F9FC 0%, #FFFFFF 100%);
+      padding: 2rem 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid #E9EDF2;
+    }
+
+    .avatar-icon {
+      background: linear-gradient(135deg, #FFB347, #FF8C42);
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 1rem;
+      border-radius: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 20px -10px rgba(255, 140, 66, 0.4);
+      transition: all 0.2s;
+    }
+
+    .avatar-icon i {
+      font-size: 3.2rem;
+      color: white;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      background: linear-gradient(120deg, #1F2B3E, #1E4A76);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.3rem;
+    }
+
+    .badge {
+      background: #EFF3F8;
+      display: inline-block;
+      padding: 0.25rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1E5A88;
+      margin-top: 0.5rem;
+      backdrop-filter: blur(2px);
+    }
+
+    .bio {
+      margin-top: 1rem;
+      color: #3C5A7D;
+      font-weight: 450;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .bio i {
+      color: #F4A261;
+    }
+
+    /* stats row */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      background: #FFFFFFE6;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #EDF2F7;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: #1A4A6F;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #5F7F9E;
+    }
+
+    /* link section */
+    .links-container {
+      padding: 1.8rem 2rem 2.2rem;
+      background: #FFFFFF;
+    }
+
+    /* tool category tag */
+    .section-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #2C6E9E;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.2px;
+    }
+
+    .section-tag i {
+      font-size: 1rem;
+    }
+
+    .tool-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #F8F9FD;
+      margin-bottom: 1rem;
+      padding: 1rem 1.4rem;
+      border-radius: 28px;
+      text-decoration: none;
+      transition: all 0.25s;
+      border: 1px solid #EFF3FA;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .tool-button:hover {
+      background: white;
+      border-color: #FFB85E;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 18px -10px rgba(0, 0, 0, 0.12);
+    }
+
+    .link-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .link-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(125deg, #FFF2E5, #FFE6D5);
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #E67E22;
+      font-size: 1.4rem;
+    }
+
+    .link-info h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1C3C5C;
+    }
+
+    .link-info p {
+      font-size: 0.75rem;
+      color: #7089A8;
+      margin-top: 2px;
+    }
+
+    .arrow-icon {
+      color: #B6CDE5;
+      transition: transform 0.2s;
+    }
+
+    .tool-button:hover .arrow-icon {
+      transform: translateX(4px);
+      color: #F4A261;
+    }
+
+    /* affiliate badge */
+    .affiliate-badge {
+      background: #FEF6E6;
+      border-radius: 20px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #C16F1A;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* footer note */
+    .footer-note {
+      background: #F9FCFE;
+      padding: 1rem 2rem 1.6rem;
+      text-align: center;
+      border-top: 1px solid #ECF3F9;
+      font-size: 0.7rem;
+      color: #6E8EB0;
+    }
+
+    .footer-note i {
+      margin: 0 3px;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        border-radius: 36px;
+      }
+      .links-container {
+        padding: 1.5rem;
+      }
+      .tool-button {
+        padding: 0.8rem 1rem;
+      }
+      .link-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+      }
+      .profile {
+        padding: 1.5rem;
+      }
+    }
+
+    /* special asin tools row gradient for the main cta */
+    .highlight-btn {
+      background: linear-gradient(95deg, #FFF9F0, #FFF5E8);
+      border-left: 3px solid #FFB347;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="profile">
+      <div class="avatar-icon">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <h1>ASIN Tools Hub</h1>
+      <div class="badge">
+        <i class="fas fa-microchip"></i> Amazon Seller Toolkit
+      </div>
+      <div class="bio">
+        <i class="fas fa-link"></i> 
+        <span>Batch ASIN links • Comparison URLs • Affiliate shortcuts</span>
+        <i class="fas fa-bolt"></i>
+      </div>
+    </div>
+
+    <!-- Quick stats: fake dynamic info (just for vibe) -->
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">12+</div>
+        <div class="stat-label">ASIN Tools</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1‑Click</div>
+        <div class="stat-label">Batch URLs</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">📊</div>
+        <div class="stat-label">Competitor Intel</div>
+      </div>
+    </div>
+
+    <div class="links-container">
+      <!-- ASIN essential tools group -->
+      <div class="section-tag">
+        <i class="fas fa-cubes"></i> 
+        <span>⚡ POWER ASIN LINKS</span>
+      </div>
+
+      <!-- 1. Targeted ASIN URL Builder (competitor batch) -->
+      <a href="#" class="tool-button" id="asinUrlBuilderBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="link-info">
+            <h3>🎯 Targeted ASIN URL</h3>
+            <p>Create single page with multiple ASINs | Clean competitor comparison</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <!-- 2. Bulk ASIN / Brand Link Generator (batch open) -->
+      <a href="#" class="tool-button" id="batchLinkBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-list-ul"></i></div>
+          <div class="link-info">
+            <h3>📦 Batch ASIN & Brand Links</h3>
+            <p>Open multiple product pages or ASIN search results instantly</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <!-- 3. One-Click Add to Cart + ASIN generator -->
+      <a href="#" class="tool-button" id="cartLinkBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-cart-plus"></i></div>
+          <div class="link-info">
+            <h3>🛒 One‑Click Add to Cart Link</h3>
+            <p>Add to cart directly via ASIN & quantity – speed up workflow</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <!-- 4. Amazon Search collection + ASIN set -->
+      <a href="#" class="tool-button" id="collectionLinkBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+          <div class="link-info">
+            <h3>📑 Collection / ASIN Set Link</h3>
+            <p>Combine up to 100 ASINs into one search results page</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <div class="section-tag" style="margin-top: 20px;">
+        <i class="fas fa-dollar-sign"></i>
+        <span>💸 AFFILIATE & STOREFRONT</span>
+      </div>
+
+      <!-- 5. Amazon Influencer Storefront (Affiliate) -->
+      <a href="#" class="tool-button highlight-btn" id="storefrontBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-store"></i></div>
+          <div class="link-info">
+            <h3>🏪 My Amazon Storefront <span class="affiliate-badge"><i class="fas fa-tag"></i> Commission</span></h3>
+            <p>Shop all my recommended gear & earn passive income</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <!-- 6. SiteStripe / Mobile GetLink helper (disclosure) -->
+      <a href="#" class="tool-button" id="affiliateToolsBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-link"></i></div>
+          <div class="link-info">
+            <h3>🔗 Amazon Affiliate Tools</h3>
+            <p>SiteStripe, Mobile GetLink & idea lists – quick access</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <!-- 7. ASIN to Keyword / Brand filter (Two-step link) -->
+      <a href="#" class="tool-button" id="twoStepBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-sliders-h"></i></div>
+          <div class="link-info">
+            <h3>⚙️ Two‑Step Brand & Keyword URL</h3>
+            <p>Filter by brand + keyword + price range (advanced narrowing)</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </a>
+
+      <!-- 8. Amazon Product Reviews Radar (demo ASIN analysis) -->
+      <a href="#" class="tool-button" id="reviewRadarBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-star-half-alt"></i></div>
+          <div class="link-info">
+            <h3>📊 Review & Rating Calculator</h3>
+            <p>Estimate ratings, find needed 5-star reviews</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </a>
+    </div>
+
+    <div class="footer-note">
+      <i class="fas fa-qrcode"></i> NFC-ready smart page • ASIN toolkit • <i class="fas fa-mobile-alt"></i> Tap & access all tools<br>
+      <span style="font-size: 0.65rem;">⚡ Generate custom links for competitor tracking & affiliate growth</span>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript: Build dynamic ASIN popups / link generators 
+       This turns static buttons into live tool helpers. Uses clean modals or prompts. -->
+  <script>
+    // Helper: generate Amazon URL for targeted ASIN collection (multiple ASINs)
+    function buildTargetedAsinUrl() {
+      let asins = prompt("🎯 Enter ASINs separated by comma or space (max 10):\nExample: B08N4CCZWF, B09G9D7L5Q", "B08N4CCZWF, B09XYZ1234");
+      if (!asins) return null;
+      // clean and split
+      let asinList = asins.split(/[ ,]+/).filter(a => a.trim().length >= 8);
+      if (asinList.length === 0) {
+        alert("Please enter at least one valid ASIN.");
+        return null;
+      }
+      // Using amazon search collection parameter: "k" with ASINs separated by pipe
+      let queryParam = asinList.join('|');
+      let url = `https://www.amazon.com/s/?k=${encodeURIComponent(queryParam)}&ref=nb_sb_noss`;
+      return url;
+    }
+
+    // Batch ASIN & Brand link generator (opens multiple pages or one aggregated)
+    function buildBatchAsinLinks() {
+      let asins = prompt("📦 Batch ASIN Generator: Enter ASINs (comma/space separated)\nWill open each product page in new tabs?", "B08N4CCZWF, B0BRKQKJY8");
+      if (!asins) return;
+      let asinArray = asins.split(/[ ,]+/).filter(a => a.trim().length > 5);
+      if (asinArray.length === 0) return alert("No valid ASINs");
+      let shouldOpen = confirm(`Open ${asinArray.length} product page(s) in new tabs? (OK = open tabs, Cancel = copy search URL)`);
+      if (shouldOpen) {
+        for (let asin of asinArray) {
+          window.open(`https://www.amazon.com/dp/${asin.trim()}`, '_blank');
+        }
+        alert(`Opened ${asinArray.length} product pages.`);
+      } else {
+        // Generate collection URL
+        let collectionUrl = `https://www.amazon.com/s/?k=${asinArray.join('|')}&ref=nb_sb_noss`;
+        navigator.clipboard.writeText(collectionUrl).then(() => {
+          alert(`✅ Collection link copied!\n${collectionUrl}\nPaste into browser to see all ASINs together.`);
+        }).catch(() => alert(`URL: ${collectionUrl}`));
+      }
+    }
+
+    // One-click add to cart builder
+    function buildOneClickCart() {
+      let asin = prompt("🛒 One-Click Add to Cart: Enter ASIN code", "B08N4CCZWF");
+      if (!asin) return;
+      let qty = prompt("Quantity (default 1)", "1");
+      let quantity = parseInt(qty) > 0 ? parseInt(qty) : 1;
+      let cartUrl = `https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=${encodeURIComponent(asin.trim())}&Quantity.1=${quantity}`;
+      if (confirm(`Generate add-to-cart link for ${asin} (qty ${quantity})?\nClick OK to copy link.`)) {
+        navigator.clipboard.writeText(cartUrl).then(() => {
+          alert(`✅ Cart link copied!\n${cartUrl}\nPaste into browser to add directly to cart.`);
+        }).catch(() => alert(cartUrl));
+      }
+    }
+
+    // collection ASIN set (up to 100)
+    function buildCollectionSet() {
+      let asins = prompt("📑 Collection / ASIN Set: Enter up to 10 ASINs (for demonstration)\nBuild a single search result view.", "B08N4CCZWF, B09G9D7L5Q");
+      if (!asins) return;
+      let list = asins.split(/[ ,]+/).filter(a => a.length > 5);
+      if (list.length === 0) return alert("No ASIN provided");
+      let collectionUrl = `https://www.amazon.com/s/?k=${list.join('|')}&ref=asin_collection`;
+      navigator.clipboard.writeText(collectionUrl).then(() => {
+        alert(`✅ Collection link ready! Copied to clipboard.\n${collectionUrl}\nYou can paste this into browser to see all selected ASINs together.`);
+      }).catch(() => alert(`Collection link: ${collectionUrl}`));
+    }
+
+    // Two-step brand + keyword link generator
+    function twoStepLinkBuilder() {
+      let brand = prompt("🏷️ Brand name (optional)", "Apple");
+      let keyword = prompt("🔍 Core keyword (optional)", "charger");
+      let minPrice = prompt("💰 Minimum price (optional, numbers only)", "");
+      let maxPrice = prompt("💰 Maximum price (optional)", "");
+      let baseUrl = "https://www.amazon.com/s/";
+      let params = new URLSearchParams();
+      if (brand && brand.trim()) params.set("field-brand", brand.trim());
+      if (keyword && keyword.trim()) params.set("field-keywords", keyword.trim());
+      if (minPrice && !isNaN(parseFloat(minPrice))) params.set("low-price", minPrice);
+      if (maxPrice && !isNaN(parseFloat(maxPrice))) params.set("high-price", maxPrice);
+      if ([...params].length === 0) {
+        alert("Please enter at least brand or keyword.");
+        return;
+      }
+      let url = baseUrl + "?" + params.toString();
+      navigator.clipboard.writeText(url).then(() => {
+        alert(`✅ Two-step filtered link created!\n${url}\nCopied to clipboard.`);
+      }).catch(() => alert(url));
+    }
+
+    // Affiliate tools: info & redirect to Amazon Associate resources
+    function affiliateToolsGuide() {
+      let msg = "🔗 Amazon Affiliate Quick Access:\n\n• SiteStripe: install Amazon Assistant or use Associate central.\n• Mobile GetLink: available inside Amazon app for influencers.\n• Storefront link: share your curated lists.\n\nPro tip: always use your tracking ID (tag=).";
+      alert(msg);
+      // optional open associate central
+      if (confirm("Open Amazon Associate central to grab SiteStripe?")) {
+        window.open("https://affiliate-program.amazon.com/", "_blank");
+      }
+    }
+
+    // Storefront demo (replace with YOUR storefront id)
+    function openStorefront() {
+      let storefrontLink = "https://www.amazon.com/shop/influencer-demo?ref_=tw_aff_blog"; 
+      // Let user customize storefront
+      let custom = prompt("✨ Paste your Amazon Influencer Storefront URL or use demo:\n(Get yours from Amazon Influencer Program)", storefrontLink);
+      if (custom && custom.startsWith("http")) {
+        window.open(custom, "_blank");
+      } else if (custom) {
+        alert("Please enter full URL starting with https://www.amazon.com/...");
+      } else {
+        window.open(storefrontLink, "_blank");
+      }
+    }
+
+    // Review Radar: simple calculator for reviews
+    function reviewCalculator() {
+      let currentRating = prompt("📊 Current product rating (1.0 - 5.0)", "4.2");
+      let totalReviews = prompt("Total number of reviews", "150");
+      let targetRating = prompt("Target rating you want (e.g. 4.5)", "4.5");
+      if (!currentRating || !totalReviews || !targetRating) return;
+      let cur = parseFloat(currentRating);
+      let tot = parseInt(totalReviews);
+      let targ = parseFloat(targetRating);
+      if (isNaN(cur) || isNaN(tot) || isNaN(targ) || tot <= 0) {
+        alert("Invalid numbers, try again.");
+        return;
+      }
+      let neededStars = Math.ceil((targ * (tot + 1) - (cur * tot)) / 5);
+      if (neededStars <= 0) {
+        alert(`🎉 Already above or equal to ${targ} stars! Keep up.`);
+      } else {
+        alert(`⭐ Need approx ${neededStars} more 5-star reviews to reach ${targ}⭐\n(Estimation based on simple average model.)`);
+      }
+    }
+
+    // Event listeners mapping with elegant tools
+    document.getElementById('asinUrlBuilderBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      let url = buildTargetedAsinUrl();
+      if (url) {
+        if (confirm(`Open Targeted ASIN page?\n${url}`)) window.open(url, '_blank');
+        else navigator.clipboard.writeText(url).then(() => alert("Link copied!"));
+      }
+    });
+
+    document.getElementById('batchLinkBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      buildBatchAsinLinks();
+    });
+
+    document.getElementById('cartLinkBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      buildOneClickCart();
+    });
+
+    document.getElementById('collectionLinkBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      buildCollectionSet();
+    });
+
+    document.getElementById('storefrontBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      openStorefront();
+    });
+
+    document.getElementById('affiliateToolsBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      affiliateToolsGuide();
+    });
+
+    document.getElementById('twoStepBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      twoStepLinkBuilder();
+    });
+
+    document.getElementById('reviewRadarBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      reviewCalculator();
+    });
+  </script>
+</body>
+</html>
