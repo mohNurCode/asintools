@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Asin Tools | አሲን ቱልስ - Premium Tools in Ethiopia</title>
+  <title>ASIN Tools Hub | Smart Seller Toolkit</title>
   <!-- Google Fonts + Font Awesome 6 -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -15,569 +15,651 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #fefaf5;
-      color: #1e2a2f;
-      scroll-behavior: smooth;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0B2B3B 0%, #123e52 50%, #1A4F6E 100%);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      position: relative;
     }
 
-    :root {
-      --primary: #d9480f;       /* vibrant orange - modern & energetic */
-      --primary-dark: #b83a07;
-      --secondary: #0f5c5f;     /* deep teal - trust */
-      --accent: #f4a261;
-      --light: #fff7ed;
-      --card-white: #ffffff;
-      --shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.12);
-      --shadow-sm: 0 6px 14px rgba(0, 0, 0, 0.05);
-      --gradient-bg: linear-gradient(135deg, #fff3e8 0%, #ffe6d5 100%);
+    /* animated background mesh */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 15% 25%, rgba(255, 200, 100, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .container {
-      max-width: 1280px;
+    /* main container - fully responsive */
+    .hub-container {
+      max-width: 680px;
+      width: 100%;
       margin: 0 auto;
-      padding: 0 32px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* Language Switcher Button */
-    .lang-switch {
-      background: var(--secondary);
-      border: none;
-      color: white;
-      font-weight: 700;
-      padding: 8px 20px;
-      border-radius: 40px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: var(--shadow-sm);
-    }
-    .lang-switch i { font-size: 1rem; }
-    .lang-switch:hover {
-      background: #0a4244;
-      transform: scale(1.02);
+    /* glassmorphic card */
+    .card {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(2px);
+      border-radius: 56px;
+      box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.5);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s;
     }
 
-    /* Navigation */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 0;
-      flex-wrap: wrap;
-      gap: 20px;
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 35px 55px -18px rgba(0, 0, 0, 0.5);
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    /* header profile section */
+    .profile {
+      background: linear-gradient(115deg, #FEFCF8 0%, #FFFFFF 100%);
+      padding: 2rem 2rem 1.8rem;
+      text-align: center;
+      border-bottom: 1px solid #EFF3F8;
     }
-    .logo-icon {
-      background: var(--primary);
-      width: 48px;
-      height: 48px;
-      border-radius: 28px;
+
+    .avatar-icon {
+      background: linear-gradient(145deg, #FF9F4A, #FF7B2C);
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 1rem;
+      border-radius: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 18px rgba(217, 72, 15, 0.25);
+      box-shadow: 0 15px 25px -8px rgba(255, 123, 44, 0.4);
+      transition: all 0.25s;
     }
-    .logo-icon i {
-      font-size: 1.8rem;
+
+    .avatar-icon i {
+      font-size: 3.4rem;
       color: white;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
-    .logo-text {
-      font-size: 1.9rem;
+
+    h1 {
+      font-size: 2.2rem;
       font-weight: 800;
-      letter-spacing: -1px;
-      background: linear-gradient(125deg, #d9480f, #f4a261);
+      letter-spacing: -0.5px;
+      background: linear-gradient(125deg, #1C3E55, #2B6A8F);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-    }
-    .logo-sub {
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--secondary);
-      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      align-items: center;
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-weight: 600;
-      color: #2c3e3a;
-      transition: 0.2s;
-    }
-    .nav-links a:hover { color: var(--primary); }
-
-    .cart-icon {
-      background: #f0ebe3;
-      padding: 8px 16px;
-      border-radius: 40px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .cart-icon:hover { background: var(--primary); color: white; }
-
-    /* Hero section modern */
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 48px;
-      padding: 40px 0 70px;
-    }
-    .hero-content { flex: 1; }
-    .hero-badge {
-      background: rgba(217, 72, 15, 0.12);
-      display: inline-block;
-      padding: 6px 18px;
-      border-radius: 40px;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin-bottom: 24px;
-      backdrop-filter: blur(2px);
-    }
-    .hero-content h1 {
-      font-size: 3.8rem;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
-    .hero-highlight {
-      color: var(--primary);
-      position: relative;
-      display: inline-block;
-    }
-    .hero-highlight::after {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 0;
-      width: 100%;
-      height: 12px;
-      background: rgba(244, 162, 97, 0.3);
-      z-index: -1;
-      border-radius: 20px;
-    }
-    .hero-desc {
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #4a5b56;
-      margin-bottom: 36px;
-      max-width: 90%;
-    }
-    .btn-primary {
-      background: var(--primary);
-      border: none;
-      padding: 14px 36px;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 1rem;
-      color: white;
-      cursor: pointer;
-      transition: 0.25s;
+    .badge {
+      background: #EEF3F9;
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      box-shadow: 0 12px 20px rgba(217, 72, 15, 0.35);
+      gap: 8px;
+      padding: 0.35rem 1.1rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #1E5A88;
+      margin-top: 0.6rem;
+      backdrop-filter: blur(2px);
     }
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
-    .hero-stats { display: flex; gap: 40px; margin-top: 48px; }
-    .stat p:first-child { font-weight: 800; font-size: 2rem; color: var(--secondary); }
 
-    .hero-image {
+    .bio {
+      margin-top: 1.2rem;
+      color: #4A6F8F;
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .bio i {
+      color: #F4A261;
+    }
+
+    /* stats row */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid #EFF3FA;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .stat-item {
+      text-align: center;
       flex: 1;
-      background: radial-gradient(circle at 30% 20%, #fff0e5, #fdecdd);
-      border-radius: 70px;
-      padding: 24px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-    .hero-image img {
-      max-width: 100%;
-      width: 400px;
-      filter: drop-shadow(8px 20px 25px rgba(0,0,0,0.1));
-      transition: 0.3s;
+      min-width: 70px;
     }
 
-    /* Section styles */
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
+    .stat-number {
       font-weight: 800;
-      margin: 60px 0 16px;
-    }
-    .section-sub {
-      text-align: center;
-      color: #5b6e68;
-      max-width: 680px;
-      margin: 0 auto 48px;
+      font-size: 1.3rem;
+      color: #1C5A7A;
     }
 
-    /* Products grid - modern cards */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 32px;
-      margin: 40px 0;
-    }
-    .product-card {
-      background: var(--card-white);
-      border-radius: 40px;
-      padding: 28px 24px;
-      text-align: center;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      border: 1px solid #f3e5d8;
-      box-shadow: var(--shadow-sm);
-    }
-    .product-card:hover {
-      transform: translateY(-12px);
-      box-shadow: var(--shadow);
-      border-color: var(--accent);
-    }
-    .product-icon {
-      background: #fef1e6;
-      width: 80px;
-      height: 80px;
-      line-height: 80px;
-      border-radius: 60px;
-      margin: 0 auto 20px;
-    }
-    .product-icon i { font-size: 2.8rem; color: var(--primary); }
-    .product-card h3 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 700; }
-    .price { font-size: 1.8rem; font-weight: 800; color: var(--secondary); margin: 16px 0; }
-    .btn-card {
-      background: transparent;
-      border: 2px solid var(--primary);
-      padding: 12px;
-      border-radius: 50px;
+    .stat-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
       font-weight: 700;
-      color: var(--primary-dark);
-      width: 100%;
-      cursor: pointer;
-      transition: 0.2s;
+      letter-spacing: 0.4px;
+      color: #6B8BA8;
     }
-    .btn-card:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-    /* Features */
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
-      justify-content: center;
-      margin: 70px 0;
+    /* links area */
+    .links-container {
+      padding: 1.8rem 2rem 2.2rem;
+      background: #FFFFFF;
     }
-    .feature {
-      background: white;
-      padding: 32px 24px;
-      border-radius: 48px;
-      text-align: center;
-      flex: 1;
-      min-width: 200px;
-      box-shadow: var(--shadow-sm);
-      transition: 0.2s;
-    }
-    .feature i { font-size: 2.8rem; color: var(--primary); margin-bottom: 20px; }
-    .feature h4 { font-size: 1.4rem; margin-bottom: 12px; }
 
-    /* Ethiopian banner */
-    .ethio-banner {
-      background: linear-gradient(115deg, #0f5c5f 0%, #1b7a6e 100%);
-      border-radius: 56px;
-      padding: 48px 40px;
-      margin: 60px 0;
+    .section-tag {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #2C6E9E;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.2px;
+    }
+
+    .section-tag i {
+      font-size: 1rem;
+    }
+
+    /* responsive tool buttons */
+    .tool-button {
+      display: flex;
       align-items: center;
       justify-content: space-between;
-      color: white;
-    }
-    .ethio-banner h3 { font-size: 2rem; font-weight: 700; }
-    .btn-light {
-      background: white;
-      color: var(--secondary);
-      padding: 12px 32px;
-      border-radius: 60px;
-      font-weight: 700;
-      border: none;
+      background: #F9FBFE;
+      margin-bottom: 1rem;
+      padding: 1rem 1.3rem;
+      border-radius: 32px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 1px solid #ECF2F9;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
       cursor: pointer;
     }
-    /* Testimonials */
-    .testimonials {
-      background: #fff6ed;
-      border-radius: 56px;
-      padding: 48px 32px;
-      margin: 40px 0;
-    }
-    .testi-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
-      justify-content: center;
-    }
-    .testi-card {
+
+    .tool-button:hover {
       background: white;
-      padding: 28px;
-      border-radius: 36px;
-      max-width: 320px;
-      box-shadow: var(--shadow-sm);
+      border-color: #FFBC7A;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 22px -12px rgba(0, 0, 0, 0.12);
     }
-    .customer { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
 
-    footer {
-      background: #1e2a2f;
-      color: #ddd9ce;
-      padding: 48px 0 24px;
-      margin-top: 60px;
-      border-radius: 56px 56px 0 0;
-    }
-    .footer-content {
+    .link-left {
       display: flex;
+      align-items: center;
+      gap: 1rem;
       flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 40px;
     }
-    .social i { font-size: 1.6rem; margin-right: 16px; cursor: pointer; transition: 0.2s; }
-    .social i:hover { color: var(--primary); }
-    .copyright { text-align: center; padding-top: 40px; border-top: 1px solid #3b4a46; margin-top: 40px; }
 
-    /* Modal */
-    .modal {
-      display: none;
+    .link-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(125deg, #FFF3E8, #FFEAD9);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #E67E22;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .link-info h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1F4462;
+    }
+
+    .link-info p {
+      font-size: 0.73rem;
+      color: #7C98B5;
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    .arrow-icon {
+      color: #C0D4EA;
+      transition: transform 0.2s;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    .tool-button:hover .arrow-icon {
+      transform: translateX(5px);
+      color: #F4A261;
+    }
+
+    .affiliate-badge {
+      background: #FEF0E0;
+      border-radius: 40px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: #C16F1A;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 6px;
+    }
+
+    .highlight-btn {
+      background: linear-gradient(95deg, #FFF9F0, #FFF4E8);
+      border-left: 3px solid #FFB347;
+    }
+
+    .footer-note {
+      background: #FCFDFF;
+      padding: 1rem 1.5rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid #EEF3FA;
+      font-size: 0.7rem;
+      color: #6F8FB0;
+    }
+
+    .footer-note i {
+      margin: 0 3px;
+    }
+
+    /* responsive breakpoints */
+    @media (max-width: 550px) {
+      body {
+        padding: 1rem;
+      }
+      .profile {
+        padding: 1.5rem 1rem;
+      }
+      .links-container {
+        padding: 1.5rem 1.2rem;
+      }
+      .tool-button {
+        padding: 0.85rem 1rem;
+        flex-wrap: wrap;
+      }
+      .link-left {
+        gap: 0.75rem;
+        flex: 1;
+      }
+      .link-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+      }
+      .link-info h3 {
+        font-size: 0.9rem;
+      }
+      .link-info p {
+        font-size: 0.68rem;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      .avatar-icon {
+        width: 76px;
+        height: 76px;
+      }
+      .avatar-icon i {
+        font-size: 2.6rem;
+      }
+      .stats {
+        gap: 0.4rem;
+      }
+      .stat-number {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .tool-button {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .arrow-icon {
+        align-self: flex-end;
+        margin-top: 5px;
+      }
+      .link-left {
+        width: 100%;
+      }
+    }
+
+    /* modal styling for any custom alerts */
+    .custom-toast {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-    .modal-content {
-      background: white;
-      max-width: 420px;
-      padding: 36px;
-      border-radius: 56px;
-      text-align: center;
-    }
-    .close-modal {
-      background: var(--secondary);
-      border: none;
-      padding: 10px 28px;
-      border-radius: 40px;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E2F3A;
       color: white;
-      margin-top: 20px;
-      cursor: pointer;
+      padding: 12px 24px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.8);
+      pointer-events: none;
+      white-space: nowrap;
+      max-width: 90%;
+      text-align: center;
+      white-space: normal;
+      word-break: break-word;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-
-    @media (max-width: 800px) {
-      .hero-content h1 { font-size: 2.4rem; }
-      .navbar { flex-direction: column; }
-      .hero { flex-direction: column-reverse; text-align: center; }
-      .hero-desc { max-width: 100%; }
-      .hero-stats { justify-content: center; }
-    }
-    /* hide class for bilingual */
-    .lang-am { display: none; }
-    body.lang-english .lang-en { display: block; }
-    body.lang-english .lang-am { display: none; }
-    body.lang-amharic .lang-am { display: block; }
-    body.lang-amharic .lang-en { display: none; }
-    /* make block for inline elements */
-    .lang-en, .lang-am { display: block; }
-    h1 .lang-en, h1 .lang-am, .hero-badge .lang-en, .hero-badge .lang-am { display: inline-block; }
-    .flex-lang { display: inline-flex; align-items: center; gap: 4px; }
   </style>
 </head>
-<body class="lang-english">
-
-<div class="container">
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="logo">
-      <div class="logo-icon"><i class="fas fa-wrench"></i></div>
-      <div>
-        <div class="logo-text">ASIN TOOLS</div>
-        <div class="logo-sub"><span class="lang-en">Ethiopia's Finest</span><span class="lang-am">ኢትዮጵያ ምርጥ</span></div>
+<body>
+<div class="hub-container">
+  <div class="card">
+    <div class="profile">
+      <div class="avatar-icon">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <h1>ASIN Tools Hub</h1>
+      <div class="badge">
+        <i class="fas fa-microchip"></i> Amazon Seller Toolkit
+      </div>
+      <div class="bio">
+        <i class="fas fa-link"></i> 
+        <span>Batch ASIN • Comparison URLs • Affiliate shortcuts</span>
+        <i class="fas fa-bolt"></i>
       </div>
     </div>
-    <div class="nav-links">
-      <a href="#home" class="lang-en">Home</a><a href="#home" class="lang-am">መነሻ</a>
-      <a href="#products" class="lang-en">Tools</a><a href="#products" class="lang-am">መሳሪያዎች</a>
-      <a href="#services" class="lang-en">Services</a><a href="#services" class="lang-am">አገልግሎቶች</a>
-      <a href="#contact" class="lang-en">Contact</a><a href="#contact" class="lang-am">አድራሻ</a>
-      <button class="lang-switch" id="langToggleBtn"><i class="fas fa-globe"></i> <span id="langToggleText">አማርኛ</span></button>
-      <div class="cart-icon" id="cartPreviewBtn"><i class="fas fa-cart-shopping"></i> <span class="lang-en">Cart</span><span class="lang-am">ጋሪ</span></div>
-    </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <div class="hero" id="home">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="lang-en"><i class="fas fa-map-marker-alt"></i> Addis Ababa piyyas · Nationwide Delivery</span>
-        <span class="lang-am"><i class="fas fa-map-marker-alt"></i> አዲስ አበባ  ፒያሳ · በመላ ኢትዮጵያ</span>
+    <!-- Stats row: responsive inline -->
+    <div class="stats">
+      <div class="stat-item"><div class="stat-number">14+</div><div class="stat-label">ASIN Tools</div></div>
+      <div class="stat-item"><div class="stat-number">1‑Click</div><div class="stat-label">Batch URLs</div></div>
+      <div class="stat-item"><div class="stat-number">📊</div><div class="stat-label">Intel Radar</div></div>
+      <div class="stat-item"><div class="stat-number">🛒</div><div class="stat-label">Cart Builder</div></div>
+    </div>
+
+    <div class="links-container">
+      <!-- ASIN essential tools group -->
+      <div class="section-tag">
+        <i class="fas fa-cubes"></i> 
+        <span>⚡ POWER ASIN LINKS</span>
       </div>
-      <h1>
-        <span class="lang-en">Heavy Duty Tools<br> for <span class="hero-highlight">African Builders</span></span>
-        <span class="lang-am">ለግንባታ ባለሙያዎች<br> <span class="hero-highlight">ከፍተኛ ጥራት መሳሪያዎች</span></span>
-      </h1>
-      <p class="hero-desc">
-        <span class="lang-en">ASIN Tools delivers premium power tools, hand tools & safety gear across Ethiopia. Trusted by 5000+ professionals. Get genuine products with warranty.</span>
-        <span class="lang-am">አሲን ቱልስ በኢትዮጵያ ውስጥ ከፍተኛ ጥራት ያላቸው የኤሌክትሪክ እና የእጅ መሳሪያዎችን ያቀርባል። ከ5000+ ደንበኞች መተማመኛ።</span>
-      </p>
-      <button class="btn-primary" id="shopNowBtn"><i class="fas fa-bolt"></i> <span class="lang-en">Shop Now</span><span class="lang-am">ግዙ አሁን</span> →</button>
-      <div class="hero-stats">
-        <div class="stat"><p>5000+</p><span class="lang-en">Happy Clients</span><span class="lang-am">ደስተኛ ደንበኞች</span></div>
-        <div class="stat"><p>200+</p><span class="lang-en">Brands</span><span class="lang-am">ብራንዶች</span></div>
-        <div class="stat"><p>24/7</p><span class="lang-en">Support</span><span class="lang-am">ድጋፍ</span></div>
+
+      <!-- 1. Targeted ASIN URL Builder -->
+      <div class="tool-button" id="asinUrlBuilderBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="link-info">
+            <h3>🎯 Targeted ASIN URL</h3>
+            <p>Single page with multiple ASINs | Clean competitor compare</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <!-- 2. Bulk ASIN / Brand Link Generator -->
+      <div class="tool-button" id="batchLinkBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-list-ul"></i></div>
+          <div class="link-info">
+            <h3>📦 Batch ASIN & Brand Links</h3>
+            <p>Open multiple products or ASIN search results</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <!-- 3. One-Click Add to Cart -->
+      <div class="tool-button" id="cartLinkBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-cart-plus"></i></div>
+          <div class="link-info">
+            <h3>🛒 One‑Click Add to Cart</h3>
+            <p>Add to cart directly via ASIN & quantity</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <!-- 4. Collection / ASIN Set Link -->
+      <div class="tool-button" id="collectionLinkBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+          <div class="link-info">
+            <h3>📑 Collection / ASIN Set Link</h3>
+            <p>Combine up to 100 ASINs into one results page</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <div class="section-tag" style="margin-top: 20px;">
+        <i class="fas fa-dollar-sign"></i>
+        <span>💸 AFFILIATE & STOREFRONT</span>
+      </div>
+
+      <!-- 5. Amazon Influencer Storefront -->
+      <div class="tool-button highlight-btn" id="storefrontBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-store"></i></div>
+          <div class="link-info">
+            <h3>🏪 My Amazon Storefront <span class="affiliate-badge"><i class="fas fa-tag"></i> Commission</span></h3>
+            <p>Shop recommended gear & earn passive income</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <!-- 6. Affiliate Tools Guide -->
+      <div class="tool-button" id="affiliateToolsBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-link"></i></div>
+          <div class="link-info">
+            <h3>🔗 Amazon Affiliate Tools</h3>
+            <p>SiteStripe, GetLink & idea lists – quick access</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <!-- 7. Two‑Step Brand & Keyword URL -->
+      <div class="tool-button" id="twoStepBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-sliders-h"></i></div>
+          <div class="link-info">
+            <h3>⚙️ Two‑Step Brand & Keyword URL</h3>
+            <p>Filter by brand + keyword + price range</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
+      <!-- 8. Review & Rating Calculator -->
+      <div class="tool-button" id="reviewRadarBtn">
+        <div class="link-left">
+          <div class="link-icon"><i class="fas fa-star-half-alt"></i></div>
+          <div class="link-info">
+            <h3>📊 Review & Rating Calculator</h3>
+            <p>Estimate ratings & needed 5-star reviews</p>
+          </div>
+        </div>
+        <div class="arrow-icon"><i class="fas fa-chevron-right"></i></div>
       </div>
     </div>
-    <div class="hero-image">
-      <img src="https://placehold.co/550x480/f2e0d0/d9480f?text=ASIN+TOOLS+%7C+Premium+Quality&font=montserrat" alt="Asin Tools Collection">
-    </div>
-  </div>
 
-  <!-- Products Section -->
-  <div id="products">
-    <div class="section-title"><span class="lang-en">🔥 Best Selling Tools</span><span class="lang-am">🔥 በሽያጭ ላይ ያሉ ምርጦች</span></div>
-    <div class="section-sub"><span class="lang-en">Professional grade tools for construction, woodwork and DIY</span><span class="lang-am">ለግንባታ፣ ለእንጨት ሥራ እና ለቤት ውስጥ ጥገና</span></div>
-    <div class="products-grid" id="productGrid"></div>
-  </div>
-
-  <!-- Features -->
-  <div class="features" id="services">
-    <div class="feature"><i class="fas fa-truck-fast"></i><h4 class="lang-en">Express Delivery</h4><h4 class="lang-am">ፈጣን አቅርቦት</h4><p class="lang-en">Free in Addis, fast to all regions</p><p class="lang-am">በአዲስ አበባ ነጻ፣ ለሁሉም ክልሎች ፈጣን አገልግሎት</p></div>
-    <div class="feature"><i class="fas fa-shield-alt"></i><h4 class="lang-en">Genuine Warranty</h4><h4 class="lang-am">ዋስትና</h4><p class="lang-en">1-2 years official coverage</p><p class="lang-am">ከ1 እስከ 2 ዓመት ሙሉ ዋስትና</p></div>
-    <div class="feature"><i class="fas fa-hand-holding-usd"></i><h4 class="lang-en">Best Price</h4><h4 class="lang-am">ምርጥ ዋጋ</h4><p class="lang-en">Price match & installment plans</p><p class="lang-am">የዋጋ ማረጋገጫ እና የክፍያ እቅድ</p></div>
-  </div>
-
-  <!-- Ethiopian Banner -->
-  <div class="ethio-banner">
-    <div><h3><i class="fas fa-crown"></i> <span class="lang-en">#1 Tool Shop in Ethiopia</span><span class="lang-am">በኢትዮጵያ ቁጥር 1 የመሳሪያ መደብር</span></h3><p class="lang-en">From Addis to Mekelle, trust ASIN Tools for genuine equipment.</p><p class="lang-am">ከአዲስ አበባ እስከ መቀሌ እውነተኛ መሳሪያዎችን ከአሲን ቱልስ ያግኙ።</p></div>
-    <button class="btn-light" id="contactBtn"><i class="fas fa-headset"></i> <span class="lang-en">Talk to Expert</span><span class="lang-am">ከእኛ ጋር ይወያዩ</span></button>
-  </div>
-
-  <!-- Testimonials -->
-  <div class="testimonials">
-    <div class="section-title" style="margin-top:0"><span class="lang-en">⭐ Client Voices</span><span class="lang-am">⭐ የደንበኞች አስተያየት</span></div>
-    <div class="testi-grid">
-      <div class="testi-card"><i class="fas fa-quote-left"></i><p class="lang-en">"Best quality tools in Ethiopia! Fast delivery to Bahir Dar. Highly professional."</p><p class="lang-am">"በኢትዮጵያ ውስጥ ምርጥ ጥራት ያላቸው መሳሪያዎች! ፈጣን አቅርቦት።"</p><div class="customer"><i class="fas fa-user-circle fa-2x" style="color:var(--primary)"></i><span>— Abebech T.</span></div></div>
-      <div class="testi-card"><i class="fas fa-quote-left"></i><p class="lang-en">"ASIN Tools has an incredible range. Their after-sale service is top."</p><p class="lang-am">"አሲን ቱልስ እጅግ በጣም ጥሩ የመሳሪያ ምርጫ አለው።"</p><div class="customer"><i class="fas fa-user-circle fa-2x"></i><span>— Henok M.</span></div></div>
+    <div class="footer-note">
+      <i class="fas fa-qrcode"></i> NFC-ready smart page • ASIN toolkit • <i class="fas fa-mobile-alt"></i> Tap & access all tools<br>
+      <span style="font-size: 0.65rem;">⚡ Generate custom links for competitor tracking & affiliate growth</span>
     </div>
   </div>
 </div>
 
-<!-- Footer -->
-<footer id="contact">
-  <div class="container">
-    <div class="footer-content">
-      <div><h4>ASIN TOOLS</h4><p><i class="fas fa-location-dot"></i> Bole, Dembel City, Addis Ababa<br><i class="fas fa-phone-alt"></i> +251-911-987654</p></div>
-      <div><h4 class="lang-en">Quick Links</h4><h4 class="lang-am">ፈጣን አገናኞች</h4><p><a href="#">Power Tools</a> | <a href="#">Hand Tools</a><br><a href="#">Safety Gear</a> | <a href="#">Offers</a></p></div>
-      <div><h4 class="lang-en">Follow</h4><h4 class="lang-am">ይከታተሉን</h4><div class="social"><i class="fab fa-facebook"></i><i class="fab fa-telegram"></i><i class="fab fa-instagram"></i></div></div>
-    </div>
-    <div class="copyright">© 2025 ASIN TOOLS | አሲን ቱልስ | Quality & Trust in Ethiopia</div>
-  </div>
-</footer>
-
-<!-- Modal -->
-<div id="cartModal" class="modal"><div class="modal-content"><i class="fas fa-shopping-cart"></i><h3 class="lang-en">Added to Cart</h3><h3 class="lang-am">ወደ ጋሪ ተጨምሯል</h3><p id="cartMessage">✨ Item added! Contact us to complete order.</p><button class="close-modal" id="closeCartModal"><span class="lang-en">Continue</span><span class="lang-am">ቀጥል</span></button></div></div>
-
 <script>
-  // product data (bilingual names optional, but using english/amharic mix friendly)
-  const products = [
-    { id: 1, name_en: "Hammer Drill", name_am: "የኤሌክትሪክ ቁፋሮ", icon: "fas fa-drill", price: "4,290 Br", desc_en: "750W, hammer action for concrete", desc_am: "750W ዋት፣ ለኮንክሪት ቁፋሮ" },
-    { id: 2, name_en: "Angle Grinder", name_am: "የሽቦ መቁረጫ", icon: "fas fa-cogs", price: "3,150 Br", desc_en: "850W, 4.5'' disc", desc_am: "850W ዋት፣ ብረት መቁረጫ" },
-    { id: 3, name_en: "Tool Set 25pcs", name_am: "የእጅ መሳሪያዎች ስብስብ", icon: "fas fa-wrench", price: "1,890 Br", desc_en: "Wrenches + sockets", desc_am: "25 ክፍሎች ቁልፍ እና ሶኬት" },
-    { id: 4, name_en: "Laser Measure", name_am: "ሌዘር መለኪያ", icon: "fas fa-ruler-combined", price: "2,550 Br", desc_en: "40m digital", desc_am: "40 ሜትር ዲጂታል መለኪያ" },
-    { id: 5, name_en: "Circular Saw", name_am: "ክብ መጋዝ", icon: "fas fa-saw", price: "6,750 Br", desc_en: "1400W, precision cut", desc_am: "1400 ዋት ለእንጨት መጋዝ" },
-    { id: 6, name_en: "Safety Kit", name_am: "የደህንነት መሳሪያዎች", icon: "fas fa-hard-hat", price: "1,290 Br", desc_en: "Helmet+gloves+goggles", desc_am: "ሄልሜት እና ጓንት" }
-  ];
-  const productGrid = document.getElementById("productGrid");
-  function renderProducts() {
-    if (!productGrid) return;
-    productGrid.innerHTML = "";
-    products.forEach(prod => {
-      const card = document.createElement("div");
-      card.classList.add("product-card");
-      card.innerHTML = `
-        <div class="product-icon"><i class="${prod.icon}"></i></div>
-        <h3><span class="lang-en">${prod.name_en}</span><span class="lang-am">${prod.name_am}</span></h3>
-        <p style="color:#6a7c74;"><span class="lang-en">${prod.desc_en}</span><span class="lang-am">${prod.desc_am}</span></p>
-        <div class="price">${prod.price}</div>
-        <button class="btn-card" data-name-en="${prod.name_en}" data-name-am="${prod.name_am}"><i class="fas fa-cart-plus"></i> <span class="lang-en">Buy</span><span class="lang-am">ግዛ</span></button>
-      `;
-      productGrid.appendChild(card);
-    });
-    document.querySelectorAll('.btn-card').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const nameEn = btn.getAttribute('data-name-en');
-        const nameAm = btn.getAttribute('data-name-am');
-        const currentLang = document.body.classList.contains('lang-english') ? 'en' : 'am';
-        const productDisplay = currentLang === 'en' ? nameEn : nameAm;
-        showCartModal(productDisplay);
-      });
-    });
+  // Helper: show toast message (non-intrusive)
+  function showToast(message, duration = 3000) {
+    let existingToast = document.querySelector('.custom-toast');
+    if (existingToast) existingToast.remove();
+    const toast = document.createElement('div');
+    toast.className = 'custom-toast';
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 400);
+    }, duration);
   }
 
-  const modal = document.getElementById("cartModal");
-  const cartMessageSpan = document.getElementById("cartMessage");
-  function showCartModal(productName) {
-    const isAm = document.body.classList.contains('lang-amharic');
-    cartMessageSpan.innerHTML = isAm ? `✨ "${productName}" ወደ ጋሪ ተጨምሯል! ለማዘዝ +251-911-987654 ይደውሉ።` : `✨ "${productName}" added! Call +251-911-987654 to order. Fast delivery across Ethiopia.`;
-    modal.style.display = "flex";
-  }
-  function closeModal() { modal.style.display = "none"; }
-  document.getElementById("closeCartModal")?.addEventListener("click", closeModal);
-  window.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
-  document.getElementById("cartPreviewBtn")?.addEventListener("click", () => showCartModal("your selection"));
-  document.getElementById("shopNowBtn")?.addEventListener("click", () => document.getElementById("products").scrollIntoView({ behavior: "smooth" }));
-  document.getElementById("contactBtn")?.addEventListener("click", () => alert("📞 Call +251-911-987654 or visit Bole showroom"));
-
-  // Bilingual switcher logic
-  const langBtn = document.getElementById("langToggleBtn");
-  const langToggleSpan = document.getElementById("langToggleText");
-  function setLanguage(lang) {
-    if (lang === 'am') {
-      document.body.classList.remove('lang-english');
-      document.body.classList.add('lang-amharic');
-      langToggleSpan.innerText = "English";
-    } else {
-      document.body.classList.remove('lang-amharic');
-      document.body.classList.add('lang-english');
-      langToggleSpan.innerText = "አማርኛ";
+  // 1. Targeted ASIN URL
+  function buildTargetedAsinUrl() {
+    let asins = prompt("🎯 Enter ASINs separated by comma or space (max 10):\nExample: B08N4CCZWF, B09G9D7L5Q", "B08N4CCZWF, B0BRKQKJY8");
+    if (!asins) return;
+    let asinList = asins.split(/[ ,]+/).filter(a => a.trim().length >= 8);
+    if (asinList.length === 0) {
+      alert("Please enter at least one valid ASIN.");
+      return;
+    }
+    let queryParam = asinList.join('|');
+    let url = `https://www.amazon.com/s/?k=${encodeURIComponent(queryParam)}&ref=nb_sb_noss`;
+    if (confirm(`Open Targeted ASIN page?\n${url}`)) window.open(url, '_blank');
+    else {
+      navigator.clipboard.writeText(url).then(() => showToast("✅ Link copied to clipboard!")).catch(() => showToast("Copy manually"));
     }
   }
-  langBtn.addEventListener("click", () => {
-    const isAmharic = document.body.classList.contains('lang-amharic');
-    if (isAmharic) setLanguage('en');
-    else setLanguage('am');
-  });
-  setLanguage('en');
-  renderProducts();
-  document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if (targetId && targetId !== "#") {
-        e.preventDefault();
-        const targetEl = document.querySelector(targetId);
-        if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+
+  // 2. Batch ASIN links
+  function buildBatchAsinLinks() {
+    let asins = prompt("📦 Batch ASIN Generator: Enter ASINs (comma/space separated)\nWill open each product page in new tabs?", "B08N4CCZWF, B0BRKQKJY8");
+    if (!asins) return;
+    let asinArray = asins.split(/[ ,]+/).filter(a => a.trim().length > 5);
+    if (asinArray.length === 0) return alert("No valid ASINs");
+    let shouldOpen = confirm(`Open ${asinArray.length} product page(s) in new tabs? (OK = open tabs, Cancel = copy search URL)`);
+    if (shouldOpen) {
+      for (let asin of asinArray) {
+        window.open(`https://www.amazon.com/dp/${asin.trim()}`, '_blank');
       }
-    });
+      showToast(`Opened ${asinArray.length} product pages.`);
+    } else {
+      let collectionUrl = `https://www.amazon.com/s/?k=${asinArray.join('|')}&ref=nb_sb_noss`;
+      navigator.clipboard.writeText(collectionUrl).then(() => showToast(`✅ Collection link copied!`)).catch(() => alert(`URL: ${collectionUrl}`));
+    }
+  }
+
+  // 3. One-click add to cart
+  function buildOneClickCart() {
+    let asin = prompt("🛒 One-Click Add to Cart: Enter ASIN code", "B08N4CCZWF");
+    if (!asin) return;
+    let qty = prompt("Quantity (default 1)", "1");
+    let quantity = parseInt(qty) > 0 ? parseInt(qty) : 1;
+    let cartUrl = `https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=${encodeURIComponent(asin.trim())}&Quantity.1=${quantity}`;
+    if (confirm(`Generate add-to-cart link for ${asin} (qty ${quantity})?\nClick OK to copy link.`)) {
+      navigator.clipboard.writeText(cartUrl).then(() => showToast(`✅ Cart link copied! Paste in browser to add directly to cart.`)).catch(() => alert(cartUrl));
+    }
+  }
+
+  // 4. Collection set link
+  function buildCollectionSet() {
+    let asins = prompt("📑 Collection / ASIN Set: Enter up to 10 ASINs\nBuild a single search result view.", "B08N4CCZWF, B09G9D7L5Q");
+    if (!asins) return;
+    let list = asins.split(/[ ,]+/).filter(a => a.length > 5);
+    if (list.length === 0) return alert("No ASIN provided");
+    let collectionUrl = `https://www.amazon.com/s/?k=${list.join('|')}&ref=asin_collection`;
+    navigator.clipboard.writeText(collectionUrl).then(() => showToast(`✅ Collection link ready! Copied to clipboard.`)).catch(() => alert(`Collection link: ${collectionUrl}`));
+  }
+
+  // 5. Storefront with custom URL
+  function openStorefront() {
+    let storefrontLink = "https://www.amazon.com/shop/influencer-demo?ref_=tw_aff_blog";
+    let custom = prompt("✨ Paste your Amazon Influencer Storefront URL or use demo:\n(Get yours from Amazon Influencer Program)", storefrontLink);
+    if (custom && custom.startsWith("http")) {
+      window.open(custom, "_blank");
+    } else if (custom) {
+      alert("Please enter full URL starting with https://www.amazon.com/...");
+    } else {
+      window.open(storefrontLink, "_blank");
+    }
+  }
+
+  // 6. Affiliate tools guide
+  function affiliateToolsGuide() {
+    let msg = "🔗 Amazon Affiliate Quick Access:\n\n• SiteStripe: install Amazon Assistant or use Associate central.\n• Mobile GetLink: inside Amazon app for influencers.\n• Storefront link: share your curated lists.\n\nPro tip: always use your tracking ID (tag=).";
+    alert(msg);
+    if (confirm("Open Amazon Associate central to grab SiteStripe?")) {
+      window.open("https://affiliate-program.amazon.com/", "_blank");
+    }
+  }
+
+  // 7. Two-step brand + keyword link
+  function twoStepLinkBuilder() {
+    let brand = prompt("🏷️ Brand name (optional)", "Apple");
+    let keyword = prompt("🔍 Core keyword (optional)", "charger");
+    let minPrice = prompt("💰 Minimum price (optional, numbers only)", "");
+    let maxPrice = prompt("💰 Maximum price (optional)", "");
+    let baseUrl = "https://www.amazon.com/s/";
+    let params = new URLSearchParams();
+    if (brand && brand.trim()) params.set("field-brand", brand.trim());
+    if (keyword && keyword.trim()) params.set("field-keywords", keyword.trim());
+    if (minPrice && !isNaN(parseFloat(minPrice))) params.set("low-price", minPrice);
+    if (maxPrice && !isNaN(parseFloat(maxPrice))) params.set("high-price", maxPrice);
+    if ([...params].length === 0) {
+      alert("Please enter at least brand or keyword.");
+      return;
+    }
+    let url = baseUrl + "?" + params.toString();
+    navigator.clipboard.writeText(url).then(() => showToast(`✅ Two-step filtered link copied!`)).catch(() => alert(url));
+  }
+
+  // 8. Review calculator
+  function reviewCalculator() {
+    let currentRating = prompt("📊 Current product rating (1.0 - 5.0)", "4.2");
+    let totalReviews = prompt("Total number of reviews", "150");
+    let targetRating = prompt("Target rating you want (e.g. 4.5)", "4.5");
+    if (!currentRating || !totalReviews || !targetRating) return;
+    let cur = parseFloat(currentRating);
+    let tot = parseInt(totalReviews);
+    let targ = parseFloat(targetRating);
+    if (isNaN(cur) || isNaN(tot) || isNaN(targ) || tot <= 0) {
+      alert("Invalid numbers, try again.");
+      return;
+    }
+    let neededStars = Math.ceil((targ * (tot + 1) - (cur * tot)) / 5);
+    if (neededStars <= 0) {
+      alert(`🎉 Already above or equal to ${targ} stars! Keep up.`);
+    } else {
+      alert(`⭐ Need approx ${neededStars} more 5-star reviews to reach ${targ}⭐\n(Estimation based on simple average model.)`);
+    }
+  }
+
+  // attach event listeners to all interactive elements (div buttons)
+  document.getElementById('asinUrlBuilderBtn').addEventListener('click', (e) => { e.preventDefault(); buildTargetedAsinUrl(); });
+  document.getElementById('batchLinkBtn').addEventListener('click', (e) => { e.preventDefault(); buildBatchAsinLinks(); });
+  document.getElementById('cartLinkBtn').addEventListener('click', (e) => { e.preventDefault(); buildOneClickCart(); });
+  document.getElementById('collectionLinkBtn').addEventListener('click', (e) => { e.preventDefault(); buildCollectionSet(); });
+  document.getElementById('storefrontBtn').addEventListener('click', (e) => { e.preventDefault(); openStorefront(); });
+  document.getElementById('affiliateToolsBtn').addEventListener('click', (e) => { e.preventDefault(); affiliateToolsGuide(); });
+  document.getElementById('twoStepBtn').addEventListener('click', (e) => { e.preventDefault(); twoStepLinkBuilder(); });
+  document.getElementById('reviewRadarBtn').addEventListener('click', (e) => { e.preventDefault(); reviewCalculator(); });
+
+  // optional smooth hover handling
+  const toolBtns = document.querySelectorAll('.tool-button');
+  toolBtns.forEach(btn => {
+    btn.setAttribute('role', 'button');
+    btn.setAttribute('tabindex', '0');
+    btn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); } });
   });
 </script>
 </body>
