@@ -556,7 +556,7 @@
                     <div class="arrow"><i class="fas fa-chevron-right"></i></div>
                 </a>
 
-                <!-- Website -->
+                <!-- Website - Redirects to landing-page.html (display text stays asintools.com) -->
                 <a href="#" class="contact-btn web" id="websiteBtn">
                     <i class="fas fa-globe" style="color:#2d6a4f;"></i>
                     <div class="btn-info">
@@ -589,7 +589,8 @@
             whatsapp: "+212612345678",
             email: "nebil@asintools.com",
             phone: "+212612345678",
-            website: "https://www.asintools.com"
+            // Website redirects to local landing-page.html (display text remains asintools.com)
+            website: "landing-page.html"
         };
 
         const social = {
@@ -619,8 +620,10 @@
         }
         
         if (websiteBtn) {
+            // Redirects to landing-page.html while displaying asintools.com
             websiteBtn.setAttribute('href', contact.website);
-            websiteBtn.setAttribute('target', '_blank');
+            // Opens in same tab for seamless experience
+            // websiteBtn.setAttribute('target', '_blank'); // Commented out - opens in same tab
         }
 
         // Social icons
